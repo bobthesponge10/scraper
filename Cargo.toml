@@ -21,8 +21,8 @@ html5ever = "0.26"
 selectors = "0.25.0"
 smallvec = "1.10.0"
 tendril = "0.4.3"
-ahash = "0.8"
-indexmap = { version = "2.0.0", optional = true }
+ahash = { version = "0.8", features=["std"], default_features=false }
+indexmap = { version = "2.0.0", optional=true }
 once_cell = "1.0"
 
 [dependencies.getopts]
@@ -30,11 +30,12 @@ version = "0.2.21"
 optional = true
 
 [features]
-default = ["main", "errors"]
+default = ["main", "errors", "ahash/runtime-rng"]
 deterministic = ["indexmap"]
 main = ["getopts"]
 atomic = []
 errors = []
+wasm = ["ahash/compile-time-rng"]
 
 [[bin]]
 name = "scraper"
